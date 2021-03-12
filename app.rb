@@ -39,7 +39,6 @@ end
 patch '/projects/:id' do
   @project = Project.find(params[:id].to_i)
   @project.update({:title => params[:title].gsub(/'/, "''")})
-  # @projects = Project.all
   erb(:project)
 end
 
@@ -74,4 +73,9 @@ delete '/projects/:id/volunteers/:volunteer_id' do
   volunteer.delete
   @project = Project.find(params[:id].to_i)
   erb(:project)
+end
+
+get '/volunteers' do
+  @volunteers = Volunteer.all
+  erb(:volunteers)
 end

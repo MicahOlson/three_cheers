@@ -1,10 +1,10 @@
-<h3>All Available Projects</h3>
-<% if @projects.any? %>
+<h3>Volunteers</h3>
+<% if @volunteers.any? %>
   <ul>
-    <% @projects.each do |project| %>
-      <li><a href="/projects/<%= project.id %>"><%= project.title %></a></li>
+    <% @volunteers.each do |volunteer| %>
+        <li><%= volunteer.name %></li>
     <% end %>
   </ul>
 <% else %>
-  <p>Sorry, we don't have any projects at the moment.</p>
+  <p>Sorry, we don't have any volunteers at the moment.</p>
 <% end %>
