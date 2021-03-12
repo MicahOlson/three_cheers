@@ -31,4 +31,15 @@ class Project
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = result.first.fetch("id").to_i
   end
+
+  def self.find(id)
+    project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
+    if project 
+      title = project.fetch("title")
+      id = project.fetch("id").to_i
+      Project.new({:title => title, :id => id})
+    else
+      nil
+    end
+  end
 end
