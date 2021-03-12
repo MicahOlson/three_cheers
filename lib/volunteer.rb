@@ -1,5 +1,6 @@
 class Volunteer
-  attr_reader :name, :project_id
+  attr_reader :project_id, :id
+  attr_accessor :name
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
@@ -26,5 +27,17 @@ class Volunteer
   def save
     result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
     @id = result.first.fetch("id").to_i
+  end
+
+  def self.find(id)
+    volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
+    if volunteer
+      name = volunteer.fetch("name")
+      project_id = volunteer.fetch("project_id").to_i
+      id = volunteer.fetch("id").to_i
+      Volunteer.new({name: name, project_id: project_id, id: id})
+    else
+      nil
+    end
   end
 end
