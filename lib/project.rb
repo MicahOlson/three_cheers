@@ -7,4 +7,8 @@ class Project
   def title
     @title
   end
+
+  def id
+    @id
+  end
 end
