@@ -38,7 +38,7 @@ end
 
 patch('/projects/:id') do
   @project = Project.find(params[:id].to_i)
-  @project.update({:title => params[:title].gsub(/'/, "''"), :id => nil})
+  @project.update({:title => params[:title].gsub(/'/, "''")})
   # @projects = Project.all
   erb(:project)
 end
@@ -49,3 +49,23 @@ delete('/projects/:id') do
   @projects = Project.all
   erb(:projects)
 end
+
+get('/projects/:id/volunteers/:volunteer_id') do
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i)
+  erb(:volunteer)
+end
+
+post('/projects/:id/volunteers') do
+  @project = Project.find(params[:id].to_i)
+  volunteer = Volunteer.new({:name => params[:name].gsub(/'/, "''"), :project_id => @project.id, :id => nil})
+  volunteer.save
+  erb(:project)
+end
+
+patch('/projects/:id/volunteers/:volunteer_id') do
+  @project = Project.find(params[:id].to_i)
+  volunteer = Volunteer.find(params[:volunteer_id].to_i)
+  volunteer.update({:name => params[:name].gsub(/'/, "''"), :project_id => @project.id})
+  erb(:project)
+end
+

@@ -2,8 +2,28 @@
   <h2><%= @project.title %></h2>
   <p>Details to come.</p>
   <p><a href="/projects/<%= @project.id %>/edit">Edit Project</a></p>
-  <p><a href="/projects">Back to Projects List</a></p>
 
+  <h3>Volunteers Working on This Project</h3>
+  <% if @project.volunteers.first %>
+    <ul>
+      <% @project.volunteers.each do |volunteer| %>
+        <li><a href="/projects/<%= @project.id %>/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no volunteers listed for this project yet.</p>
+  <% end %>
+
+  <h4>Add a Volunteer:</h4>
+  <form action="/projects/<%= @project.id %>/volunteers" method="post">
+    <div class="form-group">
+      <label for="project-volunteer-name">Volunteer Name</label>
+      <input id="project-volunteer-name" name="name" type="text"  required>
+    </div>
+    <button type="submit" class="btn btn-dark">Add Volunteer</button>
+  </form>
+
+  <p><a href="/projects">Back to Projects List</a></p>
 <% else %>
   <h3>Looks like this project id isn't in our catalogue.</h3>
 

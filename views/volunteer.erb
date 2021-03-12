@@ -1,0 +1,20 @@
+<% if @volunteer %>
+  <h2>Volunteer: <%= @volunteer.name %></h2>
+  <h3>Project: <%= @volunteer.project.title %></h3>
+
+  <form action="/projects/<%= @volunteer.project.id %>/volunteers/<%= @volunteer.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+
+    <label for="volunteer-name">Rename Volunteer</label>
+    <input id="volunteer-name" name="name" type="text" value="<%= @volunteer.name %>" required>
+
+    <button type="submit">Update Volunteer</button>
+  </form>
+
+  <p><a href="/projects/<%= @volunteer.project.id %>">Back to <%= @volunteer.project.title %></a></p>
+
+<% else %>
+  <h3>Looks like this volunteer id isn't in our database.</h3>
+  <p><a href="/">Return Home</a></p>
+
+<% end %>
