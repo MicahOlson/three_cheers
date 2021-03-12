@@ -55,17 +55,26 @@ describe Volunteer do
     end
   end
 
-  describe('.find_by_project') do
-    it("finds volunteers for an project") do
+  describe '.find_by_project'  do
+    it 'finds volunteers for a project' do
       project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project1.save
       project2 = Project.new({:title => 'Teaching Ruby to Kids', :id => nil})
       project2.save
-      volunteer1 = Volunteer.new({:name => "Jane", :project_id => project2.id, :id => nil})
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => project2.id, :id => nil})
       volunteer1.save
-      volunteer2 = Volunteer.new({:name => "Joe", :project_id => project1.id, :id => nil})
+      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => project1.id, :id => nil})
       volunteer2.save
-      expect(Volunteer.find_by_project(project1.id)).to(eq([volunteer2]))
+      expect(Volunteer.find_by_project(project1.id)).to eq [volunteer2]
     end
   end
+
+  describe '#update' do
+    it 'updates a volunteer by id' do
+      volunteer = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer.save
+      volunteer.update({:name => 'Jasmine', :project_id => 1, :id => nil})
+      expect(volunteer.name).to eq 'Jasmine'
+    end
+  end  
 end
