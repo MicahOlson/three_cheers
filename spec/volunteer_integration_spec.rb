@@ -1,7 +1,7 @@
-require 'spec_helper'
 require "capybara/rspec"
 require "pry"
 require "./app"
+require 'spec_helper'
 
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
@@ -43,6 +43,20 @@ describe 'the project delete path', {:type => :feature} do
     click_button('Delete Project')
     visit '/'
     expect(page).not_to have_content("Teaching Kids to Code")
+  end
+end
+
+# A user should be able to nagivate to a project's detail page and add a volunteer. The user will stay on the project's detail page, where the volunteer should now be listed.
+
+describe 'the volunteer creation path', {:type => :feature} do
+  it 'allows a user to add a volunteer to a project' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    id = test_project.id
+    visit "/projects/#{id}"
+    fill_in('name', :with => 'Jasmine')
+    click_button('Add Volunteer')
+    expect(page).to have_content("Jasmine")
   end
 end
 
