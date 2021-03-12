@@ -46,20 +46,6 @@ describe 'the project delete path', {:type => :feature} do
   end
 end
 
-# A user should be able to nagivate to a project's detail page and add a volunteer. The user will stay on the project's detail page, where the volunteer should now be listed.
-
-describe 'the volunteer creation path', {:type => :feature} do
-  it 'allows a user to add a volunteer to a project' do
-    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-    test_project.save
-    id = test_project.id
-    visit "/projects/#{id}"
-    fill_in('name', :with => 'Jasmine')
-    click_button('Add Volunteer')
-    expect(page).to have_content("Jasmine")
-  end
-end
-
 # The user should be able to click on a project detail page and see a list of all volunteers working on that project. The user should be able to click on a volunteer to see the volunteer's detail page.
 
 describe 'the volunteer detail page path', {:type => :feature} do
@@ -74,5 +60,36 @@ describe 'the volunteer detail page path', {:type => :feature} do
     fill_in('name', :with => 'Jane')
     click_button('Update Volunteer')
     expect(page).to have_content('Jane')
+  end
+end
+
+# A user should be able to nagivate to a project's detail page and add a volunteer. The user will stay on the project's detail page, where the volunteer should now be listed.
+
+describe 'the volunteer creation path', {:type => :feature} do
+  it 'allows a user to add a volunteer to a project' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    id = test_project.id
+    visit "/projects/#{id}"
+    fill_in('name', :with => 'Jasmine')
+    click_button('Add Volunteer')
+    expect(page).to have_content("Jasmine")
+  end
+end
+
+# A user should be able to nagivate to a volunteer's detail page and delete the volunteer. The user will then be directed to the project's detail page. The volunteer should no longer be on the list of volunteers.
+
+describe 'the volunteer delete path', {:type => :feature} do
+  it 'allows a user to delete a volunteer' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
+    test_volunteer.save
+    volunteer_id = test_volunteer.id.to_i
+    visit "/projects/#{project_id}/volunteers/#{volunteer_id}"
+    click_button('Delete Volunteer')
+    visit "/projects/#{project_id}"
+    expect(page).not_to have_content("Jasmine")
   end
 end
