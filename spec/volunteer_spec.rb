@@ -22,4 +22,10 @@ describe Volunteer do
       expect(volunteer1 == volunteer2).to eq true
     end
   end
+
+  context '.all' do
+    it 'is empty to start' do
+      expect(Volunteer.all).to eq []
+    end
+  end
 end
