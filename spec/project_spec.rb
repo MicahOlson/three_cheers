@@ -28,4 +28,12 @@ describe Project do
       expect(Project.all).to eq []
     end
   end
+
+  describe '#save' do
+    it 'saves a project to the database' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      expect(Project.all).to eq [project]
+    end
+  end
 end
