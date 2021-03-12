@@ -1,4 +1,13 @@
-<h3>Available Projects</h3>
+<h3>Add a new project</h3>
+<form action="/projects" method="post">
+  <div class="form-group">
+    <label for="new-project-title">Project</label>
+    <input id="new-project-title" name="title" class="form-control" type="text" required>
+  </div>
+  <button type="submit" class="btn btn-dark">Create Project</button>
+</form>
+
+<h3>All Available Projects</h3>
 <% if @projects.any? %>
   <ul>
     <% @projects.each do |project| %>
@@ -8,5 +17,3 @@
 <% else %>
   <p>Sorry, we don't have any projects at the moment.</p>
 <% end %>
-
-<p><a href="/projects/new">Add a new project</a></p>

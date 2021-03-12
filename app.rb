@@ -10,16 +10,12 @@ DB = PG.connect({:dbname => 'volunteer_tracker'})
 
 get '/' do
   @projects = Project.all
-  erb(:home)
+  erb(:projects)
 end
 
 get '/projects' do
   @projects = Project.all
   erb(:projects)
-end
-
-get '/projects/new' do
-  erb(:new_project)
 end
 
 post '/projects' do
@@ -28,4 +24,21 @@ post '/projects' do
   project.save
   @projects = Project.all
   erb(:projects)
+end
+
+get('/projects/:id') do
+  @project = Project.find(params[:id].to_i)
+  erb(:project)
+end
+
+get('/projects/:id/edit') do
+  @project = Project.find(params[:id].to_i)
+  erb(:edit_project)
+end
+
+patch('/projects/:id') do
+  @project = Project.find(params[:id].to_i)
+  @project.update({:title => params[:title].gsub(/'/, "''"), :id => nil})
+  # @projects = Project.all
+  erb(:project)
 end

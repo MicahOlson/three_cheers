@@ -1,0 +1,9 @@
+<% if @project %>
+  <h2><%= @project.title %></h2>
+  <p>Details to come.</p>
+  <p><a href="/projects/<%= @project.id %>/edit">Edit Project</a></p>
+
+<% else %>
+  <h3>Looks like this project id isn't in our catalogue.</h3>
+
+<% end %>
