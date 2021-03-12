@@ -9,4 +9,9 @@
   <button type="submit">Update Project</button>
 </form>
 
+<form action="/projects/<%= @project.id %>" method="post">
+  <input name="_method" type="hidden" value="delete" required>
+  <button type="submit">Delete Project</button>
+</form>
+
 <p><a href="/projects/<%= @project.id %>">Return to project description</a></p>
