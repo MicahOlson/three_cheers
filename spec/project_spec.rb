@@ -13,6 +13,12 @@ describe Project do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       expect(project.id).to eq nil
     end
+
+    it 'returns the id of the project after saving project' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      expect(project.id).to be_an_instance_of Integer
+    end
   end
 
   describe '#==' do
@@ -27,7 +33,7 @@ describe Project do
     it 'is empty to start' do
       expect(Project.all).to eq []
     end
-    
+
     it 'returns all projects' do
       project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project1.save
@@ -63,4 +69,6 @@ describe Project do
       expect(project.title).to eq 'Teaching Ruby to Kids'
     end
   end
+
+  
 end
