@@ -8,4 +8,8 @@ class Volunteer
   def name
     @name
   end
+
+  def project_id
+    @project_id
+  end
 end
