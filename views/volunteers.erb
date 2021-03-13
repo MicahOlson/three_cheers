@@ -12,9 +12,9 @@
   <ul>
     <% @volunteers.each do |volunteer| %>
         <% if volunteer.project_id == 0 %>
-          <li><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a> - Not yet assigned</li>
+          <li><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a> - Available</li>
         <% else %>
-          <li><a href="/projects/<%= volunteer.project.id %>/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></li>
+          <li><a href="/projects/<%= volunteer.project.id %>/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a> - <a href="/projects/<%= volunteer.project.id %>"><%= volunteer.project.title %></a></li>
         <% end %>
     <% end %>
   </ul>
