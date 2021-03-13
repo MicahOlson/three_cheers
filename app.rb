@@ -79,3 +79,34 @@ get '/volunteers' do
   @volunteers = Volunteer.all
   erb(:volunteers)
 end
+
+post '/volunteers' do
+  name = params[:name].gsub(/'/, "''")
+  volunteer = Volunteer.new({:name => name, :project_id => 'NULL', :id => nil})
+  volunteer.save
+  @volunteers = Volunteer.all
+  erb(:volunteers)
+end
+
+get '/volunteers/:id' do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  erb(:volunteer)
+end
+
+get '/volunteers/:id/edit' do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  erb(:edit_volunteer)
+end
+
+patch '/volunteers/:id' do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @volunteer.update({:name => params[:name].gsub(/'/, "''")})
+  erb(:volunteer)
+end
+
+delete '/volunteers/:id' do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @volunteer.delete
+  @volunteers = Volunteer.all
+  erb(:volunteers)
+end
