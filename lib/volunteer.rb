@@ -25,7 +25,10 @@ class Volunteer
   end
 
   def save
-    if !DB.exec("SELECT * FROM volunteers WHERE name = '#{@name}';").first
+    if DB.exec("SELECT * FROM volunteers WHERE name = '#{@name}';").first
+      result = DB.exec("UPDATE volunteers SET project_id = #{@project_id} RETURNING id;")
+      @id = result.first.fetch("id").to_i
+    else
       result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
       @id = result.first.fetch("id").to_i
     end

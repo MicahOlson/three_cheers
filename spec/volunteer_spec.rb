@@ -51,6 +51,14 @@ describe Volunteer do
       volunteer2.save
       expect(Volunteer.all).to eq [volunteer1]
     end
+
+    it 'updates a project_id for volunteers already in the database when added to a new project' do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Jane', :project_id => 2, :id => nil})
+      volunteer2.save
+      expect(Volunteer.find(volunteer1.id).project_id).to eq 2
+    end
   end
 
   describe '.find' do
