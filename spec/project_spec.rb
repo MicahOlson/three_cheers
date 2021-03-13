@@ -49,6 +49,14 @@ describe Project do
       project.save
       expect(Project.all).to eq [project]
     end
+
+    it 'saves a project to the database only once' do
+      project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project1.save
+      project2 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project2.save
+      expect(Project.all).to eq [project1]
+    end
   end
 
   describe '.find' do

@@ -23,8 +23,10 @@ class Project
   end
 
   def save
-    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
-    @id = result.first.fetch("id").to_i
+    if !DB.exec("SELECT * FROM projects WHERE title = '#{@title}';").first
+      result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
+      @id = result.first.fetch("id").to_i
+    end
   end
 
   def self.find(id)

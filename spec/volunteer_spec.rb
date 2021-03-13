@@ -43,6 +43,14 @@ describe Volunteer do
       volunteer1.save
       expect(Volunteer.all).to eq [volunteer1]
     end
+
+    it 'adds a volunteer to the database only once' do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer2.save
+      expect(Volunteer.all).to eq [volunteer1]
+    end
   end
 
   describe '.find' do
