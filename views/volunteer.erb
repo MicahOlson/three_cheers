@@ -10,6 +10,9 @@
         <input id="volunteer-name" name="name" class="form-control" type="text" value="<%= @volunteer.name %>" required>
       </div>
       <button type="submit" class="btn btn-dark">Update Volunteer</button>
+      <div>
+        <button type="submit" class="btn btn-warning">Remove from Project</button>
+      </div>
     </form>
 
     <form action="/projects/<%= @volunteer.project.id %>/volunteers/<%= @volunteer.id %>" method="post">

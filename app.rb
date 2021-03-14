@@ -64,7 +64,11 @@ end
 patch '/projects/:id/volunteers/:volunteer_id' do
   @project = Project.find(params[:id].to_i)
   volunteer = Volunteer.find(params[:volunteer_id].to_i)
-  volunteer.update({:name => params[:name].gsub(/'/, "''"), :project_id => @project.id})
+  if volunteer.name == params[:name]
+    volunteer.update({:name => params[:name].gsub(/'/, "''"), :project_id => 0})
+  else
+    volunteer.update({:name => params[:name].gsub(/'/, "''"), :project_id => @project.id})
+  end
   erb(:project)
 end
 

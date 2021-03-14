@@ -18,6 +18,6 @@ hr {
   margin-bottom: 40px;
 }
 
-p, .btn-danger {
+p, .btn-warning, .btn-danger {
   margin-top: 20px;
 }
