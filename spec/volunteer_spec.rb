@@ -105,6 +105,17 @@ describe Volunteer do
     end
   end
 
+  describe '#remove' do
+    it 'removes a volunteer from a project without deleting them' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      volunteer = Volunteer.new({:name => 'Jane', :project_id => project.id, :id => nil})
+      volunteer.save
+      volunteer.remove
+      expect(Volunteer.find(volunteer.id).project_id).to eq 0 
+    end
+  end
+
   describe '#project' do
     it 'finds the project a volunteer belongs to' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
