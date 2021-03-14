@@ -1,11 +1,14 @@
-# Three Cheers (for Volunteers)
+<div align="center">
+  <img src="public/img/readme.png" alt="Three Cheers logo">
+</div>  
+  
 ## _An Application to Track and Assign Volunteers to Projects_
 ### by: Micah L. Olson
 ### created: 3/12/2021
 * * * 
 
 ## Description
-This application assists a user in tracking projects and the volunteers working on them. Each project can have multiple volunteers, but a volunteer can only be assigned to one project at a time. Users will have the ability to view, add, update and delete projects, view and add volunteers, and add volunteers to a project.  
+*Three Cheers (for Volunteers)* is an application that assists users in tracking projects and the volunteers working on them. Each project can have multiple volunteers, but a volunteer can only be assigned to one project at a time. Users will have the ability to view, add, update and delete projects, view and add volunteers, and add volunteers to a project.  
 * * *
 
 ## Technologies
