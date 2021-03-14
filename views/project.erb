@@ -1,8 +1,10 @@
 <% if @project %>
-  <h2><%= @project.title %></h2>
-  <p><a href="/projects/<%= @project.id %>/edit">Edit Project</a></p>
+  <h3>
+    <%= @project.title %>
+     <span><a href="/projects/<%= @project.id %>/edit"><small>(Edit Project)</small></a></span>
+  </h3>
 
-  <h3>Volunteers Working on This Project</h3>
+  <h4>Volunteers on this project</h4>
   <% if @project.volunteers.first %>
     <ul>
       <% @project.volunteers.each do |volunteer| %>
@@ -10,20 +12,22 @@
       <% end %>
     </ul>
   <% else %>
-    <p>There are no volunteers listed for this project yet.</p>
+    <p>There are no volunteers listed for this project, yet.</p>
   <% end %>
 
-  <h4>Add a Volunteer:</h4>
+<hr>
+
+  <h5>Add a volunteer to this project</h5>
   <form action="/projects/<%= @project.id %>/volunteers" method="post">
     <div class="form-group">
-      <label for="project-volunteer-name">Volunteer Name</label>
-      <input id="project-volunteer-name" name="name" type="text"  required>
+      <input id="project-volunteer-name" name="name" class="form-control" type="text" placeholder="Enter a name here" required>
     </div>
     <button type="submit" class="btn btn-dark">Add Volunteer</button>
   </form>
 
-  <p><a href="/projects">Back to Projects List</a></p>
+  <p><a href="/projects">Return to projects list</a></p>
 <% else %>
-  <h3>Looks like this project id isn't in our catalogue.</h3>
+  <h3>This project is no longer in our database.</h3>
+  <p><a href="/projects">Return to projects list</a></p>
 
 <% end %>

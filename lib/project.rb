@@ -12,7 +12,7 @@ class Project
   end
 
   def self.all
-    returned_projects = DB.exec("SELECT * FROM projects;")
+    returned_projects = DB.exec("SELECT * FROM projects ORDER BY title;")
     projects = []
     returned_projects.each do |project|
       title = project.fetch("title")

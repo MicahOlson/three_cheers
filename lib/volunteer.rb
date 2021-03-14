@@ -13,7 +13,7 @@ class Volunteer
   end
 
   def self.all
-    returned_volunteers = DB.exec("SELECT * FROM volunteers;")
+    returned_volunteers = DB.exec("SELECT * FROM volunteers ORDER BY name;")
     volunteers = []
     returned_volunteers.each do |volunteer|
       name = volunteer.fetch("name")
@@ -26,8 +26,10 @@ class Volunteer
 
   def save
     if DB.exec("SELECT * FROM volunteers WHERE name = '#{@name}';").first
-      result = DB.exec("UPDATE volunteers SET project_id = #{@project_id} RETURNING id;")
-      @id = result.first.fetch("id").to_i
+      if @project_id != 'NULL'
+        result = DB.exec("UPDATE volunteers SET project_id = #{@project_id} WHERE name = '#{@name}' RETURNING id;")
+        @id = result.first.fetch("id").to_i
+      end
     else
       result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
       @id = result.first.fetch("id").to_i

@@ -1,40 +1,23 @@
 body {
-  font-family: Arial, Verdana, sans-serif;
   margin-left: 120px;
   margin-right: 120px;
 }
 
-#page {
-	width:960px;
-	border:10px solid #257ca7;
-	padding:40px;
-	margin:20px;
+#logo {
+  margin: auto;
+  width: 70%;
+  display: block;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: droid_serifregular, Georgia, Times, serif; 
-  color: #666666;
+h3 {
+  margin-top: 40px;
 }
 
-h1 {
-  font-size: 2em;
+hr {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-p {
-  font-size: 90%;
-  color: #333333;
-  line-height: 1.3em;
-}
-
-#navigation {
-	border-top:1px solid #d6d6d6;
-	border-bottom:1px solid #d6d6d6;
-	padding:10px 0px 10px 0px;
-	margin:20px 0px 20px 0px;
-}
-
-#navigation a {
-  color: #257ca7;
-  text-decoration: none;
-  margin-right: 20px;
+p, .btn-danger {
+  margin-top: 20px;
 }

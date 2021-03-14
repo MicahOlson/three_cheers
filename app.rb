@@ -100,7 +100,7 @@ end
 
 patch '/volunteers/:id' do
   @volunteer = Volunteer.find(params[:id].to_i)
-  @volunteer.update({:name => params[:name].gsub(/'/, "''")})
+  @volunteer.update({:name => params[:name].gsub(/'/, "''"), :project_id => @volunteer.project_id})
   erb(:volunteer)
 end
 
