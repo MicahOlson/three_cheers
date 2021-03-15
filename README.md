@@ -1,6 +1,4 @@
-<div align="center">
-  <img src="public/img/readme.png" alt="Three Cheers logo">
-</div>  
+<div><img src="public/img/logo.png" alt="Three Cheers logo" width="80%"></div>  
   
 ## _An Application to Track and Assign Volunteers to Projects_
 ### by: Micah L. Olson
